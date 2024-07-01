@@ -26,3 +26,16 @@ YimMenu Updater is an All-in-One Updater/Downloader for YimMenu, designed to sim
 - Process Name (GTA5, RDR2, Minecraft.Windows, etc.)
 - Launch Game -> Launches the chosen process
 - Select/Inject DLL 
+
+
+# How To Compile
+This program was built using the latest .NET Runtime (8.0) in Visual Studio.  To compile, follow the below instructions:
+
+Download the Source, open the .sln with Visual Studio
+Open the YimMenu Updater solution in the Solution Explorer on the right and right click it
+Click 'Publish' and hit the Publish Button then click Open Folder when its finished
+
+You should have 2 .exe's -- YimMenu Updater & dllinject.exe
+
+IF you do not have the dllinject.exe, visit https://github.com/nefarius/Injector and download the release, 
+then rename it to dllinject.exe and put it in the same location as YimMenu Updater.exe
