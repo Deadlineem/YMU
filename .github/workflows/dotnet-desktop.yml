@@ -37,7 +37,9 @@ jobs:
     - name: Archive build output
       run: |
         echo "Build path: $(pwd)/build_output"
-        Compress-Archive -Path build_output/* -DestinationPath build.zip -CompressionLevel Optimal
+        mkdir build
+        Copy-Item -Path "build_output/*.exe" -Destination build -Recurse
+        Compress-Archive -Path build/*.exe -DestinationPath build.zip -CompressionLevel Optimal
       shell: pwsh
 
     - name: Get current date
