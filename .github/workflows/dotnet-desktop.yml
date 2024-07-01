@@ -32,23 +32,18 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release
-
-    - name: Locate Build Output
-      id: locate_build
-      run: |
-        $buildPath = Get-ChildItem -Directory -Path D:\a\YMU\YMU\ -Recurse -Filter "Release" | Select-Object -First 1 -ExpandProperty FullName
-        Write-Host "::set-output name=build_path::$buildPath"
-      shell: pwsh
+      run: dotnet build --configuration Release --output build_output
 
     - name: Archive build output
       run: |
-        $buildPath = '${{ steps.locate_build.outputs.build_path }}'
-        echo "Build path: $buildPath"
-        mkdir build
-        Copy-Item -Path "$buildPath\*" -Destination build -Recurse
-        Compress-Archive -Path build/* -DestinationPath build.zip
+        echo "Build path: $(pwd)/build_output"
+        Compress-Archive -Path build_output/* -DestinationPath build.zip -CompressionLevel Optimal
       shell: pwsh
+
+    - name: Get current date
+      id: get_date
+      run: echo "TAG_NAME=v$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+      shell: bash
 
     - name: Create Release
       id: create_release
@@ -56,8 +51,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.sha }}
-        release_name: Release ${{ github.sha }}
+        tag_name: ${{ env.TAG_NAME }}
+        release_name: Release ${{ env.TAG_NAME }}
         draft: false
         prerelease: false
 
