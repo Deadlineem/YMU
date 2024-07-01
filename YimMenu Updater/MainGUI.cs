@@ -647,7 +647,7 @@ namespace YimUpdater
                 */
                 case "gta5":
                     string[] found = new string[] { };
-                    string[] locations = new string[] { "SteamLibrary\\steamapps\\common\\Grand Theft Auto V\\", "Program Files\\Rockstar Games\\Grand Theft Auto V\\", "Program Files (x86)\\Steam\\steamapps\\common\\Grand Theft Auto V" };
+                    string[] locations = new string[] { "Program Files (x86)\\Steam\\steamapps\\common\\Grand Theft Auto V", "SteamLibrary\\steamapps\\common\\Grand Theft Auto V\\", "Program Files\\Rockstar Games\\Grand Theft Auto V\\", "Rockstar Games\\Grand Theft Auto V\\", "Program Files\\Epic Games\\GTAV\\", "Epic Games\\GTAV\\" };
                     string exe = "GTAVLauncher.exe";
                     foreach (DriveInfo drive in DriveInfo.GetDrives())
                     {
@@ -673,31 +673,47 @@ namespace YimUpdater
                                     {
                                         MessageBox.Show("Couldnt start GTA 5 - " + ex.Message);
                                     }
-                                    /*if (Interaction.Shell(loc, AppWinStyle.MinimizedFocus, false, -1) == 0)
-                                    {
-                                        MessageBox.Show("Failed To Launch GTA 5.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                        return;
-                                    }
-                                    MessageBox.Show("Starting GTA 5", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
                                     return;
                                 }
                             }
                         }
                     }
-                    if (found.Length > 0)
-                    {
-                        MessageBox.Show("Found Multiple Installs");
-                    }
-                    /*if (Interaction.Shell("explorer.exe shell:appsFolder\\Grand Theft Auto V", AppWinStyle.MinimizedFocus, false, -1) == 0)
-                    {
-                        MessageBox.Show("Failed To Launch Minecraft.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-                    MessageBox.Show("Starting Minecraft", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);*/
                     return;
 
                 case "rdr2":
-                    
+                    string[] rdrfound = new string[] { };
+                    string[] rdrlocations = new string[] { "Program Files (x86)\\Steam\\steamapps\\common\\Red Dead Redemption 2\\", "SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\", "Program Files\\Epic Games\\RDR2\\", "Epic Games\\RDR2\\", "Program Files\\Rockstar Games\\Red Dead Redemption 2\\", "Rockstar Games\\Red Dead Redemption 2\\" };
+                    string rdrexe = "RDR2.exe";
+                    foreach (DriveInfo drive in DriveInfo.GetDrives())
+                    {
+                        foreach (string location in rdrlocations)
+                        {
+                            string loc = drive.Name + location + rdrexe;
+                            if (File.Exists(loc))
+                            {
+                                rdrfound.Append(loc);
+                                if (MessageBox.Show("Found " + loc + " would you like to launch it?", "Found", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                                {
+                                    try
+                                    {
+                                        ProcessStartInfo startInfo = new ProcessStartInfo
+                                        {
+                                            FileName = loc,
+                                            WorkingDirectory = drive.Name + location,
+                                            Verb = "runas",
+                                            UseShellExecute = true
+                                        };
+                                        Process proc = Process.Start(startInfo);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show("Couldnt start RDR2 - " + ex.Message);
+                                    }
+                                    return;
+                                }
+                            }
+                        }
+                    }
                     return;
 
                 case "minecraft.windows":
