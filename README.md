@@ -1,5 +1,4 @@
 # YimMenu Updater
-[![.NET Core Desktop](https://github.com/Deadlineem/YMU/actions/workflows/dotnet-desktop.yml/badge.svg?branch=main&event=release)](https://github.com/Deadlineem/YMU/actions/workflows/dotnet-desktop.yml)
 
 YimMenu Updater is an All-in-One Updater/Downloader for YimMenu, designed to simplify various tasks in one easy-to-use application. With YimMenu Updater (YMU), you can effortlessly download YimMenu, Lua Scripts, and Addons, as well as manage them efficiently.
 
