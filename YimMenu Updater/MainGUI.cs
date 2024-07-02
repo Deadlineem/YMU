@@ -252,12 +252,12 @@ namespace YimUpdater
             DownloadFile(file3, "https://raw.githubusercontent.com/Deadlineem/Extras-Addon-for-YimMenu/main/" + file3, yimMenuFolder, file3 + " downloaded successfully to ", true);
         }
 
-        private void downloadUltimateMenu_Click(object sender, EventArgs e)
+        private void downloadCSYONMenu_Click(object sender, EventArgs e)
         {
             string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string yimMenuFolder = Path.Combine(appDataFolder, "YimMenu", "scripts");
-            string file = "Ultimate_Menu For YimMenu V2.1 1.68.lua";
-            DownloadFile(file, "https://raw.githubusercontent.com/L7NEG/Ultimate-Menu/main/YimMenu/" + file, yimMenuFolder, file + " downloaded successfully to ", true);
+            string file = "Csyon SubMenu V5.1 1.69.lua";
+            DownloadFile(file, "https://raw.githubusercontent.com/CSY0N/CsyonSubMenu/main/Csyon%20Sub%20Menu%20YimMenu%20Script/" + file, yimMenuFolder, file + " downloaded successfully to ", true);
         }
 
         private void downloadAnimations_Click(object? sender, EventArgs e)
@@ -423,7 +423,7 @@ namespace YimUpdater
         private List<Repository> customRepositories = new List<Repository>
         {
             new Repository { Name = "Extras Addon", Html_Url = "" },
-            new Repository { Name = "Ultimate Menu", Html_Url = "" }
+            new Repository { Name = "CSYON Submenu", Html_Url = "" }
         };
 
         private async void InitializeFlowLayoutPanel()
@@ -478,9 +478,9 @@ namespace YimUpdater
                 {
                     repoButton.Click += downloadExtras_Click;
                 }
-                else if (repo.Name == "Ultimate Menu")
+                else if (repo.Name == "CSYON Submenu")
                 {
-                    repoButton.Click += downloadUltimateMenu_Click;
+                    repoButton.Click += downloadCSYONMenu_Click;
                 }
                 else
                 {
