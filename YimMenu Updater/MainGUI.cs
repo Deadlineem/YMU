@@ -682,7 +682,7 @@ namespace YimUpdater
 
                 case "rdr2":
                     string[] rdrfound = new string[] { };
-                    string[] rdrlocations = new string[] { "Program Files (x86)\\Steam\\steamapps\\common\\Red Dead Redemption 2\\", "SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\", "Program Files\\Epic Games\\RDR2\\", "Epic Games\\RDR2\\", "Program Files\\Rockstar Games\\Red Dead Redemption 2\\", "Rockstar Games\\Red Dead Redemption 2\\" };
+                    string[] rdrlocations = new string[] { "Program Files (x86)\\Steam\\steamapps\\common\\Red Dead Redemption 2\\", "SteamLibrary\\steamapps\\common\\Red Dead Redemption 2\\", "Program Files\\Epic Games\\RDR2\\", "Program Files\\Epic Games\\RedDeadRedemption2\\", "Epic Games\\RDR2\\", "Program Files\\Rockstar Games\\Red Dead Redemption 2\\", "Rockstar Games\\Red Dead Redemption 2\\" };
                     string rdrexe = "RDR2.exe";
                     foreach (DriveInfo drive in DriveInfo.GetDrives())
                     {
