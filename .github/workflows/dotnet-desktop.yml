@@ -13,6 +13,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Create Release Directory
+      run: mkdir bin\Release\net8.0-win-x64
+
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
@@ -22,25 +25,21 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build -c Release
-
-    - name: Create Published Files Directory
-      run: |
-        mkdir ./published_files
+      run: dotnet build -c Release -p:OutputPath=bin\Release\net8.0-win-x64\
 
     - name: Copy YimMenu Updater.exe to Published Files
       run: |
-        Copy-Item -Path "./YimMenu Updater/bin/Release/net8.0-win-x64/*.exe" -Destination "./published_files/" -Force
+        Copy-Item -Path "./YimMenu Updater/bin/Release/net8.0-win-x64/*.exe" -Destination "./bin/Release/net8.0-win-x64/" -Force
 
     - name: Copy dllinject.exe to Published Files
       run: |
-        Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./published_files/" -Force
+        Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./bin/Release/net8.0-win-x64/" -Force
 
-    - name: Upload Published Files
+    - name: Upload Executables and Additional Files
       uses: actions/upload-artifact@v2
       with:
-        name: Published Files
-        path: ./published_files
+        name: Executables and Additional Files
+        path: ./bin/Release/net8.0-win-x64
 
     - name: Create GitHub Release
       id: create_release
@@ -53,7 +52,7 @@ jobs:
         draft: false
         prerelease: false
         files: |
-          ./published_files/*.exe
+          ./bin/Release/net8.0-win-x64/*.exe
 
     - name: Release URL
       run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
