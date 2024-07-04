@@ -33,14 +33,6 @@ jobs:
     - name: Copy dllinject.exe to Build Output
       run: Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./bin/Release/net8.0-win-x64/" -Force
 
-    - name: Upload Executables
-      uses: actions/upload-artifact@v2
-      with:
-        name: Executables
-        path: |
-          ./bin/Release/net8.0-win-x64/YMU.exe
-          ./bin/Release/net8.0-win-x64/dllinject.exe
-
     - name: Set Default Version if Tags Are Absent
       run: |
         if [ -z "$(git describe --tags)" ]; then
