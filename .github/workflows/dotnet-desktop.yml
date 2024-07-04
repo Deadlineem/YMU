@@ -16,13 +16,13 @@ jobs:
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '8.0.x'  # Replace with the exact version of .NET 8.0 you're using
+        dotnet-version: '8.0.x'  # Use .NET 8.0
 
     - name: Restore dependencies
       run: dotnet restore "YimMenu Updater/YimMenu Updater.csproj"
 
     - name: Build YimMenu Updater
-      run: dotnet publish "YimMenu Updater/YimMenu Updater.csproj" -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o ./bin/Release/net8.0-win-x64/
+      run: dotnet publish "YimMenu Updater/YimMenu Updater.csproj" -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./bin/Release/net8.0-win-x64/
 
     - name: Rename YimMenu Updater.exe to YMU.exe
       run: Rename-Item -Path "./bin/Release/net8.0-win-x64/YimMenu Updater.exe" -NewName "YMU.exe"
@@ -33,13 +33,28 @@ jobs:
     - name: Copy dllinject.exe to Build Output
       run: Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./bin/Release/net8.0-win-x64/" -Force
 
-    - name: Set Default Version if Tags Are Absent
-      run: |
-        if [ -z "$(git describe --tags)" ]; then
-          echo "RELEASE_VERSION=1.0.0" >> $GITHUB_ENV
-        else
-          echo "RELEASE_VERSION=$(git describe --tags)" >> $GITHUB_ENV
-        fi
+    - name: Upload Executables
+      uses: actions/upload-artifact@v2
+      with:
+        name: Executables
+        path: |
+          ./bin/Release/net8.0-win-x64/YMU.exe
+          ./bin/Release/net8.0-win-x64/dllinject.exe
+
+    - name: Get Latest Release Version
+      id: get_version
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const latestRelease = await github.rest.repos.getLatestRelease({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+          });
+          const tag = latestRelease.data.tag_name;
+          const version = tag.replace(/^v/, '').split('.');
+          version[2] = (parseInt(version[2]) + 1).toString();
+          const newVersion = `v${version.join('.')}`;
+          core.setOutput('new_version', newVersion);
 
     - name: Create GitHub Release
       id: create_release
@@ -47,10 +62,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ env.RELEASE_VERSION }}
+        tag_name: ${{ steps.get_version.outputs.new_version }}
         files: |
           ./bin/Release/net8.0-win-x64/YMU.exe
           ./bin/Release/net8.0-win-x64/dllinject.exe
 
     - name: Release URL
-      run: echo "The release URL is https://github.com/${{ github.repository }}/releases/tag/${{ env.RELEASE_VERSION }}"
+      run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
