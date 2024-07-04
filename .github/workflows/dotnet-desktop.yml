@@ -27,15 +27,8 @@ jobs:
     - name: Build
       run: dotnet build -c Release -p:OutputPath=bin\Release\net8.0-win-x64\
 
-    - name: Copy YimMenu Updater.exe to Published Files
-      run: |
-        Copy-Item -Path "./YimMenu Updater/bin/Release/net8.0-win-x64/*.exe" -Destination "./bin/Release/net8.0-win-x64/" -Force
-
-    - name: Copy dllinject.exe to Published Files
-      run: |
-        Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./bin/Release/net8.0-win-x64/" -Force
-
     - name: Upload Executables and Additional Files
+      id: upload-artifacts
       uses: actions/upload-artifact@v2
       with:
         name: Executables and Additional Files
@@ -48,11 +41,9 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v1.0.0  # Replace with your desired release tag/version
-        release_name: Release v1.0.0  # Replace with your desired release name
-        draft: false
-        prerelease: false
         files: |
-          ./bin/Release/net8.0-win-x64/*.exe
+          ./bin/Release/net8.0-win-x64/YimMenu Updater.exe
+          ./bin/Release/net8.0-win-x64/dllinject.exe
 
     - name: Release URL
       run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
