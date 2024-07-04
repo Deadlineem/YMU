@@ -13,9 +13,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Create Release Directory
-      run: mkdir bin\Release\net8.0-win-x64
-
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
@@ -24,22 +21,23 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build
+    - name: Build YimMenu Updater
       run: dotnet build -c Release -p:OutputPath=bin\Release\net8.0-win-x64\
 
     - name: Verify Build Output
       run: |
         ls ./bin/Release/net8.0-win-x64/
-        ls ./
 
-    - name: Upload Executables and Additional Files
-      id: upload-artifacts
+    - name: Copy dllinject.exe to Build Output
+      run: Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./bin/Release/net8.0-win-x64/" -Force
+
+    - name: Upload Executables
       uses: actions/upload-artifact@v2
       with:
-        name: Executables and Additional Files
+        name: Executables
         path: |
-          ./bin/Release/net8.0-win-x64/YimMenu Updater.exe
-          ./dllinject.exe
+          ./bin/Release/net8.0-win-x64/*.exe
+          ./bin/Release/net8.0-win-x64/dllinject.exe
 
     - name: Create GitHub Release
       id: create_release
@@ -50,7 +48,7 @@ jobs:
         tag_name: v1.0.0  # Replace with your desired release tag/version
         files: |
           ./bin/Release/net8.0-win-x64/YimMenu Updater.exe
-          ./dllinject.exe
+          ./bin/Release/net8.0-win-x64/dllinject.exe
 
     - name: Release URL
       run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
