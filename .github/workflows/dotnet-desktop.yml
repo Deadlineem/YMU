@@ -24,12 +24,17 @@ jobs:
     - name: Build
       run: dotnet build -c Release
 
-    - name: Copy Files to Publish Directory
+    - name: Create Publish Directory
       run: |
         mkdir ./publish
-        cp ./YimMenu\ Updater/bin/Release/net8.0-win-x64/* ./publish/
+
+    - name: Copy YimMenu Updater.exe
+      run: |
+        cp ./YimMenu\ Updater/bin/Release/net8.0-win-x64/*.exe ./publish/
+
+    - name: Copy dllinject.exe
+      run: |
         cp ./YimMenu\ Updater/dllinject.exe ./publish/
-        # Adjust paths according to your project's structure and file locations
 
     - name: Upload Executables and Additional Files
       uses: actions/upload-artifact@v2
