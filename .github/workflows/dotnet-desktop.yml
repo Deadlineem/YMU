@@ -27,12 +27,19 @@ jobs:
     - name: Build
       run: dotnet build -c Release -p:OutputPath=bin\Release\net8.0-win-x64\
 
+    - name: Verify Build Output
+      run: |
+        ls ./bin/Release/net8.0-win-x64/
+        ls ./YimMenu\ Updater/
+
     - name: Upload Executables and Additional Files
       id: upload-artifacts
       uses: actions/upload-artifact@v2
       with:
         name: Executables and Additional Files
-        path: ./bin/Release/net8.0-win-x64
+        path: |
+          ./bin/Release/net8.0-win-x64/YimMenu Updater.exe
+          ./YimMenu Updater/dllinject.exe
 
     - name: Create GitHub Release
       id: create_release
@@ -43,7 +50,7 @@ jobs:
         tag_name: v1.0.0  # Replace with your desired release tag/version
         files: |
           ./bin/Release/net8.0-win-x64/YimMenu Updater.exe
-          ./bin/Release/net8.0-win-x64/dllinject.exe
+          ./YimMenu Updater/dllinject.exe
 
     - name: Release URL
       run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
