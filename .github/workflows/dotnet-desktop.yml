@@ -39,13 +39,17 @@ jobs:
 
     - name: Get Latest Release Version
       id: get_version
-      uses: actions/github-script@v6
+      run: echo "::set-output name=new_version::$(git describe --tags)"
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        script: |
-          const latestRelease = await github.rest.repos.getLatestRelease({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-          });
-          const tag = latestRelease.data.tag_name;
-          const version = tag.replace(/^v/, '').split('.');
-          version[2] = (pa
+        tag_name: ${{ steps.get_version.outputs.new_version }}
+        files: |
+          ./bin/Release/net8.0-win-x64/YMU.exe
+
+    - name: Release URL
+      run: echo "The release URL is https://github.com/${{ github.repository }}/releases/tag/${{ steps.get_version.outputs.new_version }}"
