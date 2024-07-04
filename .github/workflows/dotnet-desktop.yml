@@ -22,7 +22,7 @@ jobs:
       run: dotnet restore "YimMenu Updater/YimMenu Updater.csproj"
 
     - name: Build YimMenu Updater
-      run: dotnet publish "YimMenu Updater/YimMenu Updater.csproj" -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o ./bin/Release/net8.0-win-x64/
+      run: dotnet publish "YimMenu Updater/YimMenu Updater.csproj" -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:DebugType=None -o ./bin/Release/net8.0-win-x64/
 
     - name: Rename YimMenu Updater.exe to YMU.exe
       run: Rename-Item -Path "./bin/Release/net8.0-win-x64/YimMenu Updater.exe" -NewName "YMU.exe"
@@ -30,18 +30,12 @@ jobs:
     - name: Verify Build Output
       run: dir ./bin/Release/net8.0-win-x64/
 
-    - name: Copy dllinject.exe to Build Output
-      run: Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./bin/Release/net8.0-win-x64/" -Force
-
-    - name: Zip Executables
-      run: Compress-Archive -Path "./bin/Release/net8.0-win-x64/*" -DestinationPath "./bin/Release/YMU.zip"
-
     - name: Upload Executables
       uses: actions/upload-artifact@v2
       with:
         name: Executables
         path: |
-          ./bin/Release/YMU.zip
+          ./bin/Release/net8.0-win-x64/YMU.exe
 
     - name: Get Latest Release Version
       id: get_version
@@ -54,19 +48,4 @@ jobs:
           });
           const tag = latestRelease.data.tag_name;
           const version = tag.replace(/^v/, '').split('.');
-          version[2] = (parseInt(version[2]) + 1).toString();
-          const newVersion = `v${version.join('.')}`;
-          core.setOutput('new_version', newVersion);
-
-    - name: Create GitHub Release
-      id: create_release
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.get_version.outputs.new_version }}
-        files: |
-          ./bin/Release/YMU.zip
-
-    - name: Release URL
-      run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
+          version[2] = (pa
