@@ -22,10 +22,10 @@ jobs:
         dotnet-version: '8.0.x'  # Replace with the exact version of .NET 8.0 you're using
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore YimMenu\ Updater/YimMenu\ Updater.csproj
 
     - name: Build YimMenu Updater
-      run: dotnet build -c Release -o ./bin/Release/net8.0-win-x64/
+      run: dotnet build YimMenu\ Updater/YimMenu\ Updater.csproj -c Release -o ./bin/Release/net8.0-win-x64/
 
     - name: Verify Build Output
       run: |
