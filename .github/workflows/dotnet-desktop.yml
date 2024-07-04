@@ -25,7 +25,7 @@ jobs:
       run: dotnet restore
 
     - name: Build YimMenu Updater
-      run: dotnet build -c Release -p:OutputPath=bin\Release\net8.0-win-x64\
+      run: dotnet build -c Release -o ./bin/Release/net8.0-win-x64/
 
     - name: Verify Build Output
       run: |
