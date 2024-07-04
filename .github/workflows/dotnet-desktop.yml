@@ -13,6 +13,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Create Release Directory
+      run: mkdir bin\Release\net8.0-win-x64
+
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
@@ -37,7 +40,6 @@ jobs:
         name: Executables
         path: |
           ./bin/Release/net8.0-win-x64/*.exe
-          ./bin/Release/net8.0-win-x64/dllinject.exe
 
     - name: Create GitHub Release
       id: create_release
