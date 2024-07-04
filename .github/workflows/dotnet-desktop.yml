@@ -39,7 +39,7 @@ jobs:
         name: Executables and Additional Files
         path: |
           ./bin/Release/net8.0-win-x64/YimMenu Updater.exe
-          ./YimMenu Updater/dllinject.exe
+          ./dllinject.exe
 
     - name: Create GitHub Release
       id: create_release
