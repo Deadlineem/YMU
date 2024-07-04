@@ -20,9 +20,6 @@ namespace YimUpdater
 
     public partial class MainGUI : Form
     {
-        private static readonly string RepoOwner = "Deadlineem";
-        private static readonly string RepoName = "YMU";
-        private static readonly string CurrentVersion = "v1.0.2"; // Replace with your current version
 
         public bool drag;
         public MainGUI()
@@ -30,7 +27,6 @@ namespace YimUpdater
             InitializeComponent();
             InitializeFlowLayoutPanel();
             //LoadRepositories();
-            CheckForUpdates();
         }
 
         private void MainGUI_Load(object sender, EventArgs e)
@@ -56,51 +52,6 @@ namespace YimUpdater
             injectDLL.Click += injectDLL_Click;
             launchGame.Click += launchGame_Click;
 
-        }
-
-        private static void CheckForUpdates()
-        {
-            var client = new RestClient("https://api.github.com");
-            var request = new RestRequest($"/repos/{RepoOwner}/{RepoName}/releases/latest", Method.Get);
-            request.AddHeader("User-Agent", "request");
-
-            var response = client.Execute(request);
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                var release = JsonConvert.DeserializeObject<GitHubRelease>(response.Content);
-                if (release.TagName != CurrentVersion)
-                {
-                    Console.WriteLine("New version available: " + release.TagName);
-                    DownloadAndUpdate(release.Assets[0].BrowserDownloadUrl);
-                }
-                else
-                {
-                    Console.WriteLine("You are using the latest version.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Failed to fetch latest release information.");
-            }
-        }
-
-        private static void DownloadAndUpdate(string downloadUrl)
-        {
-            string tempFile = Path.GetTempFileName();
-
-            using (var client = new WebClient())
-            {
-                client.DownloadFile(downloadUrl, tempFile);
-            }
-
-            string executablePath = Process.GetCurrentProcess().MainModule.FileName;
-            string backupPath = executablePath + ".bak";
-
-            File.Move(executablePath, backupPath);
-            File.Move(tempFile, executablePath);
-
-            Process.Start(executablePath);
-            Process.GetCurrentProcess().Kill();
         }
 
         private void CloseBtn_Click(object? sender, EventArgs e)
@@ -779,15 +730,5 @@ namespace YimUpdater
                     return;
             }
         }
-    }
-    public class GitHubRelease
-    {
-        public string TagName { get; set; }
-        public GitHubAsset[] Assets { get; set; }
-    }
-
-    public class GitHubAsset
-    {
-        public string BrowserDownloadUrl { get; set; }
     }
 }
