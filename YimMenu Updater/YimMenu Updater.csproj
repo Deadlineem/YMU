@@ -54,4 +54,10 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+  <Content Include="dllinject.exe">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+</ItemGroup>
+
 </Project>
