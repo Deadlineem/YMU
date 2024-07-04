@@ -41,9 +41,13 @@ jobs:
           ./bin/Release/net8.0-win-x64/YMU.exe
           ./bin/Release/net8.0-win-x64/dllinject.exe
 
-    - name: Get Latest Release Version
-      id: get_version
-      run: echo "RELEASE_VERSION=$(git describe --tags)" >> $GITHUB_ENV || echo "RELEASE_VERSION=1.0.0" >> $GITHUB_ENV
+    - name: Set Default Version if Tags Are Absent
+      run: |
+        if [ -z "$(git describe --tags)" ]; then
+          echo "RELEASE_VERSION=1.0.0" >> $GITHUB_ENV
+        else
+          echo "RELEASE_VERSION=$(git describe --tags)" >> $GITHUB_ENV
+        fi
 
     - name: Create GitHub Release
       id: create_release
