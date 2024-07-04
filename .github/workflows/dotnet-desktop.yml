@@ -24,23 +24,23 @@ jobs:
     - name: Build
       run: dotnet build -c Release
 
-    - name: Create Publish Directory
+    - name: Create Published Files Directory
       run: |
-        mkdir ./publish
+        mkdir ./published_files
 
-    - name: Copy YimMenu Updater.exe
+    - name: Copy YimMenu Updater.exe to Published Files
       run: |
-        Copy-Item -Path "./YimMenu Updater/bin/Release/net8.0-win-x64/*.exe" -Destination "./publish/" -Force
+        Copy-Item -Path "./YimMenu Updater/bin/Release/net8.0-win-x64/*.exe" -Destination "./published_files/" -Force
 
-    - name: Copy dllinject.exe
+    - name: Copy dllinject.exe to Published Files
       run: |
-        Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./publish/" -Force
+        Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./published_files/" -Force
 
-    - name: Upload Executables and Additional Files
+    - name: Upload Published Files
       uses: actions/upload-artifact@v2
       with:
-        name: Executables and Additional Files
-        path: ./publish
+        name: Published Files
+        path: ./published_files
 
     - name: Create Release
       id: create_release
@@ -53,7 +53,7 @@ jobs:
         draft: false
         prerelease: false
         files: |
-          ./publish/*.exe
+          ./published_files/*.exe
 
     - name: Release URL
       run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
