@@ -7,6 +7,7 @@ using System.IO.Compression;
 using System.Diagnostics;
 using System.Reflection;
 using System.Security.Principal;
+using System.Security.Cryptography;
 using System.Text.Json;
 using Newtonsoft.Json;
 using Guna.UI2.WinForms;
@@ -14,12 +15,15 @@ using RestSharp;
 using Microsoft.VisualBasic;
 using System;
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace YimUpdater
 {
 
     public partial class MainGUI : Form
     {
+        private const string GitHubApiUrl = "https://api.github.com/repos/Deadlineem/YMU/releases/latest";
+        private const string ExeName = "YMU.exe";
 
         public bool drag;
         public MainGUI()
@@ -51,7 +55,104 @@ namespace YimUpdater
             downloadHorseMenu.Click += downloadHorseMenu_Click;
             injectDLL.Click += injectDLL_Click;
             launchGame.Click += launchGame_Click;
+            updateCheck.Click += new EventHandler(updateCheck_Click);
+        }
 
+        private async void updateCheck_Click(object sender, EventArgs e)
+        {
+            await CheckForUpdates();
+        }
+
+        private async Task CheckForUpdates()
+        {
+            try
+            {
+                var client = new RestClient(GitHubApiUrl);
+                var request = new RestRequest("", Method.Get);
+                request.AddHeader("User-Agent", "YimMenu-Updater");
+                var response = await client.ExecuteAsync(request);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var release = JObject.Parse(response.Content);
+                    var asset = release["assets"].FirstOrDefault(a => a["name"].ToString() == ExeName);
+                    if (asset == null)
+                    {
+                        MessageBox.Show("Could not find the latest version of YMU.exe.");
+                        return;
+                    }
+                    var downloadUrl = asset["browser_download_url"].ToString();
+
+                    await DownloadAndReplaceExecutable(downloadUrl, ExeName);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to check for updates. Please try again later.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while checking for updates: {ex.Message}");
+            }
+        }
+
+        private async Task DownloadAndReplaceExecutable(string downloadUrl, string executableName)
+        {
+            try
+            {
+                var tempFilePath = Path.GetTempFileName();
+                using (var client = new WebClient())
+                {
+                    await client.DownloadFileTaskAsync(new Uri(downloadUrl), tempFilePath);
+                }
+
+                var exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, executableName);
+                if (File.Exists(exePath))
+                {
+                    var currentHash = ComputeSha256Hash(exePath);
+                    var downloadedHash = ComputeSha256Hash(tempFilePath);
+
+                    if (currentHash != downloadedHash)
+                    {
+                        File.Delete(exePath);
+                        File.Move(tempFilePath, exePath);
+
+                        MessageBox.Show("Update completed successfully. The application will now restart.");
+                        RestartApplication();
+                    }
+                    else
+                    {
+                        MessageBox.Show("You already have the latest version.");
+                        File.Delete(tempFilePath);
+                    }
+                }
+                else
+                {
+                    File.Move(tempFilePath, exePath);
+                    MessageBox.Show("No existing executable found. The latest version has been downloaded.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while updating the application: {ex.Message}");
+            }
+        }
+
+        private string ComputeSha256Hash(string filePath)
+        {
+            using (var sha256 = SHA256.Create())
+            using (var stream = File.OpenRead(filePath))
+            {
+                var hashBytes = sha256.ComputeHash(stream);
+                return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+            }
+        }
+
+        private void RestartApplication()
+        {
+            var exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ExeName);
+            Process.Start(exePath);
+            Application.Exit();
         }
 
         private void CloseBtn_Click(object? sender, EventArgs e)
