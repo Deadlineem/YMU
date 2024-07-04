@@ -1,4 +1,4 @@
-name: Build and Publish
+name: Build and Publish Release
 
 on:
   push:
@@ -24,19 +24,29 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -o ./publish
 
-    - name: Upload Executables
+    - name: Copy Additional Files
+      run: |
+        cp ./path/to/dllinject.exe ./publish/
+        # Repeat for any other necessary files
+
+    - name: Upload Executables and Additional Files
       uses: actions/upload-artifact@v2
       with:
-        name: Executables
-        path: ./publish/*.exe
-
-    - name: Deploy to GitHub Pages
-      uses: actions/checkout@v2
-      if: github.ref == 'refs/heads/main'  # Only deploy on main branch push
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        repository: Deadlineem/YMU  # Replace with your repository name
+        name: Executables and Additional Files
         path: ./publish
-        target_branch: gh-pages
-        commit_message: Deploy latest executables
 
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v1.0.0  # Replace with your desired release tag/version
+        release_name: Release v1.0.0  # Replace with your desired release name
+        draft: false
+        prerelease: false
+        files: |
+          ./publish/*.exe
+
+    - name: Release URL
+      run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
