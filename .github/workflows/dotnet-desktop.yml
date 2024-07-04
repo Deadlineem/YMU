@@ -33,13 +33,15 @@ jobs:
     - name: Copy dllinject.exe to Build Output
       run: Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./bin/Release/net8.0-win-x64/" -Force
 
+    - name: Zip Executables
+      run: Compress-Archive -Path "./bin/Release/net8.0-win-x64/*" -DestinationPath "./bin/Release/YMU.zip"
+
     - name: Upload Executables
       uses: actions/upload-artifact@v2
       with:
         name: Executables
         path: |
-          ./bin/Release/net8.0-win-x64/YMU.exe
-          ./bin/Release/net8.0-win-x64/dllinject.exe
+          ./bin/Release/YMU.zip
 
     - name: Get Latest Release Version
       id: get_version
@@ -64,8 +66,7 @@ jobs:
       with:
         tag_name: ${{ steps.get_version.outputs.new_version }}
         files: |
-          ./bin/Release/net8.0-win-x64/YMU.exe
-          ./bin/Release/net8.0-win-x64/dllinject.exe
+          ./bin/Release/YMU.zip
 
     - name: Release URL
       run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
