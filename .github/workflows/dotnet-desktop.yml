@@ -54,3 +54,28 @@ jobs:
 
     - name: Release URL
       run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
+
+    - name: Delete Existing Release Assets
+      uses: actions/github-script@v4
+      with:
+        script: |
+          const { Octokit } = require("@octokit/rest");
+          const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+          
+          const owner = context.repo.owner;
+          const repo = context.repo.repo;
+          const release_id = context.payload.release.id;
+          
+          const { data: assets } = await octokit.rest.repos.listReleaseAssets({
+            owner,
+            repo,
+            release_id
+          });
+          
+          for (const asset of assets) {
+            await octokit.rest.repos.deleteReleaseAsset({
+              owner,
+              repo,
+              asset_id: asset.id
+            });
+          }
