@@ -27,9 +27,10 @@ jobs:
     - name: Build
       run: dotnet build -c Release -p:OutputPath=bin\Release\net8.0-win-x64\
 
-    - name: Copy YimMenu Updater.exe to Published Files
+    - name: Run YimMenu Updater with elevated privileges
+      shell: powershell
       run: |
-        Copy-Item -Path "./YimMenu Updater/bin/Release/net8.0-win-x64/*.exe" -Destination "./bin/Release/net8.0-win-x64/" -Force
+        Start-Process -FilePath "./bin/Release/net8.0-win-x64/YimMenu Updater.exe" -Verb RunAs
 
     - name: Copy dllinject.exe to Published Files
       run: |
