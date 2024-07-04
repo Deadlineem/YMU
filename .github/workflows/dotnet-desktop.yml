@@ -22,7 +22,7 @@ jobs:
       run: dotnet restore "YimMenu Updater/YimMenu Updater.csproj"
 
     - name: Build YimMenu Updater
-      run: dotnet publish "YimMenu Updater/YimMenu Updater.csproj" -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:DebugType=None -o ./bin/Release/net8.0-win-x64/
+      run: dotnet publish "YimMenu Updater/YimMenu Updater.csproj" -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o ./bin/Release/net8.0-win-x64/
 
     - name: Rename YimMenu Updater.exe to YMU.exe
       run: Rename-Item -Path "./bin/Release/net8.0-win-x64/YimMenu Updater.exe" -NewName "YMU.exe"
@@ -30,16 +30,20 @@ jobs:
     - name: Verify Build Output
       run: dir ./bin/Release/net8.0-win-x64/
 
+    - name: Copy dllinject.exe to Build Output
+      run: Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./bin/Release/net8.0-win-x64/" -Force
+
     - name: Upload Executables
       uses: actions/upload-artifact@v2
       with:
         name: Executables
         path: |
           ./bin/Release/net8.0-win-x64/YMU.exe
+          ./bin/Release/net8.0-win-x64/dllinject.exe
 
     - name: Get Latest Release Version
       id: get_version
-      run: echo "RELEASE_VERSION=$(git describe --tags)" >> $GITHUB_ENV
+      run: echo "RELEASE_VERSION=$(git describe --tags)" >> $GITHUB_ENV || echo "RELEASE_VERSION=1.0.0" >> $GITHUB_ENV
 
     - name: Create GitHub Release
       id: create_release
@@ -50,6 +54,7 @@ jobs:
         tag_name: ${{ env.RELEASE_VERSION }}
         files: |
           ./bin/Release/net8.0-win-x64/YMU.exe
+          ./bin/Release/net8.0-win-x64/dllinject.exe
 
     - name: Release URL
       run: echo "The release URL is https://github.com/${{ github.repository }}/releases/tag/${{ env.RELEASE_VERSION }}"
