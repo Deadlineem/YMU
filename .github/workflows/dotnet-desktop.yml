@@ -13,9 +13,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Create Release Directory
-      run: mkdir -p bin\Release\net8.0-win-x64
-
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
@@ -25,7 +22,7 @@ jobs:
       run: dotnet restore "YimMenu Updater/YimMenu Updater.csproj"
 
     - name: Build YimMenu Updater
-      run: dotnet publish "YimMenu Updater/YimMenu Updater.csproj" -c Release -r win-x64 --self-contained -o ./bin/Release/net8.0-win-x64/
+      run: dotnet publish "YimMenu Updater/YimMenu Updater.csproj" -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o ./bin/Release/net8.0-win-x64/
 
     - name: Rename YimMenu Updater.exe to YMU.exe
       run: Rename-Item -Path "./bin/Release/net8.0-win-x64/YimMenu Updater.exe" -NewName "YMU.exe"
@@ -91,4 +88,3 @@ jobs:
               });
             }
           }
- 
