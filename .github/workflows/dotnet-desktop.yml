@@ -21,17 +21,15 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Publish
-      run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -o ./publish
+    - name: Build
+      run: dotnet build -c Release
 
-    - name: Copy dllinject.exe
+    - name: Copy Files to Publish Directory
       run: |
-        cp ./dllinject.exe ./publish/
-        # Replace ./dllinject.exe with the actual path relative to your project root
-
-    - name: Copy Additional Files
-      run: |
-        # Add additional copy commands here if needed
+        mkdir ./publish
+        cp ./YimMenu\ Updater/bin/Release/net8.0-win-x64/* ./publish/
+        cp ./YimMenu\ Updater/dllinject.exe ./publish/
+        # Adjust paths according to your project's structure and file locations
 
     - name: Upload Executables and Additional Files
       uses: actions/upload-artifact@v2
