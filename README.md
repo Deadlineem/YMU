@@ -2,6 +2,11 @@
 
 YimMenu Updater is an All-in-One Updater/Downloader for YimMenu, designed to simplify various tasks in one easy-to-use application. With YimMenu Updater (YMU), you can effortlessly download YimMenu, Lua Scripts, and Addons, as well as manage them efficiently.
 
+# Download
+
+To download YimMenu Updater, visit https://github.com/Deadlineem/YMU/releases and download both YMU.exe and dllinject.exe, put them in a folder together and run YMU.exe
+(YMU.exe ONLY depends on dllinject for injecting into game processes, it does not need it for anything else.)
+
 ## Features
 
 ### YimMenu
