@@ -1,0 +1,35 @@
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - main  # Replace with your default branch name
+
+jobs:
+  build:
+    runs-on: windows-latest  # Use windows-latest for Windows x64 platform
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.0.x'  # Replace with the exact version of .NET 8.0 you're using
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Publish
+      run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -o ./publish
+
+    - name: Deploy
+      # Example deploy action, adjust as per your deployment needs
+      # Replace with your specific deployment action or script
+      # For example, if deploying to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: ./publish
