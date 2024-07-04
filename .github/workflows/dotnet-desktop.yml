@@ -30,11 +30,11 @@ jobs:
 
     - name: Copy YimMenu Updater.exe
       run: |
-        cp ./YimMenu\ Updater/bin/Release/net8.0-win-x64/*.exe ./publish/
+        Copy-Item -Path "./YimMenu Updater/bin/Release/net8.0-win-x64/*.exe" -Destination "./publish/" -Force
 
     - name: Copy dllinject.exe
       run: |
-        cp ./YimMenu\ Updater/dllinject.exe ./publish/
+        Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./publish/" -Force
 
     - name: Upload Executables and Additional Files
       uses: actions/upload-artifact@v2
