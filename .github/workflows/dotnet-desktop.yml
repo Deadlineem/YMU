@@ -50,8 +50,8 @@ jobs:
       with:
         tag_name: v1.0.0  # Replace with your desired release tag/version
         files: |
-          ./bin/Release/net8.0-win-x64/YimMenu Updater.exe
-          ./bin/Release/net8.0-win-x64/dllinject.exe
+          ./bin/Release/net8.0-win-x64/YimMenu Updater.exe => YimMenu-Updater-${{ github.run_id }}.exe
+          ./bin/Release/net8.0-win-x64/dllinject.exe => dllinject-${{ github.run_id }}.exe
 
     - name: Release URL
       run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
