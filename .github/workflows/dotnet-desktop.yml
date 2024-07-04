@@ -1,4 +1,4 @@
-name: Build and Publish Release
+name: Build and Publish
 
 on:
   push:
@@ -42,7 +42,7 @@ jobs:
         name: Published Files
         path: ./published_files
 
-    - name: Create Release
+    - name: Create GitHub Release
       id: create_release
       uses: softprops/action-gh-release@v1
       env:
