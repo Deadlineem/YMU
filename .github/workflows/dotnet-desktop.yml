@@ -24,12 +24,19 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -o ./publish
 
-    - name: Deploy
-      # Example deploy action, adjust as per your deployment needs
-      # Replace with your specific deployment action or script
-      # For example, if deploying to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@3.7.1
+    - name: Upload Executables
+      uses: actions/upload-artifact@v2
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: ./publish
+        name: Executables
+        path: ./publish/*.exe
+
+    - name: Deploy to GitHub Pages
+      uses: actions/checkout@v2
+      if: github.ref == 'refs/heads/main'  # Only deploy on main branch push
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: Deadlineem/YMU  # Replace with your repository name
+        path: ./publish
+        target_branch: gh-pages
+        commit_message: Deploy latest executables
+
