@@ -27,6 +27,9 @@ jobs:
     - name: Build YimMenu Updater
       run: dotnet publish "YimMenu Updater/YimMenu Updater.csproj" -c Release -r win-x64 --self-contained -o ./bin/Release/net8.0-win-x64/
 
+    - name: Rename YimMenu Updater.exe to YMU.exe
+      run: Rename-Item -Path "./bin/Release/net8.0-win-x64/YimMenu Updater.exe" -NewName "YMU.exe"
+
     - name: Verify Build Output
       run: dir ./bin/Release/net8.0-win-x64/
 
@@ -38,7 +41,7 @@ jobs:
       with:
         name: Executables
         path: |
-          ./bin/Release/net8.0-win-x64/*.exe
+          ./bin/Release/net8.0-win-x64/YMU.exe
           ./bin/Release/net8.0-win-x64/dllinject.exe
 
     - name: Create GitHub Release
@@ -49,14 +52,14 @@ jobs:
       with:
         tag_name: v1.0.0  # Replace with your desired release tag/version
         files: |
-          ./bin/Release/net8.0-win-x64/YimMenu Updater.exe
+          ./bin/Release/net8.0-win-x64/YMU.exe
           ./bin/Release/net8.0-win-x64/dllinject.exe
 
     - name: Release URL
       run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
 
     - name: Delete Existing Release Assets
-      uses: actions/github-script@v4
+      uses: actions/github-script@v6
       with:
         script: |
           const { Octokit } = require("@octokit/rest");
@@ -64,18 +67,27 @@ jobs:
           
           const owner = context.repo.owner;
           const repo = context.repo.repo;
-          const release_id = context.payload.release.id;
           
-          const { data: assets } = await octokit.rest.repos.listReleaseAssets({
+          const { data: releases } = await octokit.repos.listReleases({
             owner,
-            repo,
-            release_id
+            repo
           });
           
-          for (const asset of assets) {
-            await octokit.rest.repos.deleteReleaseAsset({
+          const release = releases.find(r => r.tag_name === 'v1.0.0');
+          
+          if (release) {
+            const release_id = release.id;
+            const { data: assets } = await octokit.repos.listReleaseAssets({
               owner,
               repo,
-              asset_id: asset.id
+              release_id
             });
+            
+            for (const asset of assets) {
+              await octokit.repos.deleteReleaseAsset({
+                owner,
+                repo,
+                asset_id: asset.id
+              });
+            }
           }
