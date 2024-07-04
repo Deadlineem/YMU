@@ -26,7 +26,7 @@ jobs:
         dotnet publish "YimMenu Updater/YimMenu Updater.csproj" -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./bin/Release/net8.0-win-x64/
         # Optimize size further if needed, e.g., by stripping symbols
         # strip YMU.exe symbols
-        ./bin/Release/net8.0-win-x64/YimMenu Updater.exe --strip-symbols
+        ./bin/Release/net8.0-win-x64/YimMenu\ Updater.exe --strip-symbols
         
     - name: Rename YimMenu Updater.exe to YMU.exe
       run: Rename-Item -Path "./bin/Release/net8.0-win-x64/YimMenu Updater.exe" -NewName "YMU.exe"
