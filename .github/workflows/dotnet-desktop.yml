@@ -14,7 +14,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Create Release Directory
-      run: mkdir bin\Release\net8.0-win-x64
+      run: mkdir -p bin\Release\net8.0-win-x64
 
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
@@ -25,11 +25,10 @@ jobs:
       run: dotnet restore "YimMenu Updater/YimMenu Updater.csproj"
 
     - name: Build YimMenu Updater
-      run: dotnet build "YimMenu Updater/YimMenu Updater.csproj" -c Release -o ./bin/Release/net8.0-win-x64/
+      run: dotnet publish "YimMenu Updater/YimMenu Updater.csproj" -c Release -r win-x64 --self-contained -o ./bin/Release/net8.0-win-x64/
 
     - name: Verify Build Output
-      run: |
-        ls ./bin/Release/net8.0-win-x64/
+      run: dir ./bin/Release/net8.0-win-x64/
 
     - name: Copy dllinject.exe to Build Output
       run: Copy-Item -Path "./YimMenu Updater/dllinject.exe" -Destination "./bin/Release/net8.0-win-x64/" -Force
@@ -50,8 +49,8 @@ jobs:
       with:
         tag_name: v1.0.0  # Replace with your desired release tag/version
         files: |
-          ./bin/Release/net8.0-win-x64/YimMenu Updater.exe => YimMenu-Updater-${{ github.run_id }}.exe
-          ./bin/Release/net8.0-win-x64/dllinject.exe => dllinject-${{ github.run_id }}.exe
+          ./bin/Release/net8.0-win-x64/YimMenu Updater.exe
+          ./bin/Release/net8.0-win-x64/dllinject.exe
 
     - name: Release URL
       run: echo "The release URL is ${{ steps.create_release.outputs.upload_url }}"
