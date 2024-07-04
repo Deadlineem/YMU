@@ -24,10 +24,14 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true -o ./publish
 
+    - name: Copy dllinject.exe
+      run: |
+        cp ./dllinject.exe ./publish/
+        # Replace ./dllinject.exe with the actual path relative to your project root
+
     - name: Copy Additional Files
       run: |
-        cp ./path/to/dllinject.exe ./publish/
-        # Repeat for any other necessary files
+        # Add additional copy commands here if needed
 
     - name: Upload Executables and Additional Files
       uses: actions/upload-artifact@v2
