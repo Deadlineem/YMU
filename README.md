@@ -4,8 +4,10 @@ YimMenu Updater is an All-in-One Updater/Downloader for YimMenu, designed to sim
 
 # Download
 
-To download YimMenu Updater, visit https://github.com/Deadlineem/YMU/releases and download both YMU.exe and dllinject.exe, put them in a folder together and run YMU.exe
+To download YimMenu Updater, visit https://github.com/Deadlineem/YMU/releases and download both YMU.exe and dllinject.exe, put them in a folder together on your desktop and run YMU.exe
 (YMU.exe ONLY depends on dllinject for injecting into game processes, it does not need it for anything else.)
+
+NOTE: YMU.exe wont detect djjinject.exe if they are not moved to your desktop and they are left in the downloads folder, no idea why and do not intend to add extra permissions to get it to work.
 
 ## Features
 
