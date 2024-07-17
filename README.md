@@ -4,6 +4,7 @@ YimMenu Updater is an All-in-One Updater/Downloader for YimMenu, designed to sim
 
 ## Screenshots
 You can view screenshots for YMU on this topic, since there are so many screenshots, its neatly contained here rather than mucking up the readme :)
+
 https://github.com/Deadlineem/YMU/discussions/6
 
 # Download
