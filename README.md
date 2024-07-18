@@ -30,6 +30,8 @@ NOTE: YMU.exe wont detect djjinject.exe if they are not moved to your desktop an
 - Install Animations
 - Install XML Maps & Vehicles
 - Install YimASI
+- Install Json Vehicles
+- Install Outfits
 
 ### HorseMenu
 - Download HorseMenu

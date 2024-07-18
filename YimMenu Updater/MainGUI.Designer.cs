@@ -56,6 +56,10 @@ namespace YimUpdater
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges52 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges53 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges54 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges55 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges56 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges57 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges58 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pictureBox1 = new PictureBox();
             CloseBtn = new Button();
             minBtn = new Button();
@@ -67,6 +71,8 @@ namespace YimUpdater
             downloadYimMenu = new Guna.UI2.WinForms.Guna2Button();
             LuaScripts_Tab = new TabPage();
             Addons_Tab = new TabPage();
+            installOutfits = new Guna.UI2.WinForms.Guna2Button();
+            installJsonVehicles = new Guna.UI2.WinForms.Guna2Button();
             installYimASI = new Guna.UI2.WinForms.Guna2Button();
             installXMLs = new Guna.UI2.WinForms.Guna2Button();
             downloadAnimations = new Guna.UI2.WinForms.Guna2Button();
@@ -266,6 +272,8 @@ namespace YimUpdater
             // Addons_Tab
             // 
             Addons_Tab.BackColor = Color.FromArgb(30, 30, 30);
+            Addons_Tab.Controls.Add(installOutfits);
+            Addons_Tab.Controls.Add(installJsonVehicles);
             Addons_Tab.Controls.Add(installYimASI);
             Addons_Tab.Controls.Add(installXMLs);
             Addons_Tab.Controls.Add(downloadAnimations);
@@ -275,10 +283,50 @@ namespace YimUpdater
             Addons_Tab.TabIndex = 2;
             Addons_Tab.Text = "Addons";
             // 
+            // installOutfits
+            // 
+            installOutfits.BorderRadius = 10;
+            installOutfits.CustomizableEdges = customizableEdges36;
+            installOutfits.DisabledState.BorderColor = Color.DarkGray;
+            installOutfits.DisabledState.CustomBorderColor = Color.DarkGray;
+            installOutfits.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            installOutfits.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            installOutfits.FillColor = Color.FromArgb(155, 0, 0);
+            installOutfits.Font = new Font("Segoe UI", 9F);
+            installOutfits.ForeColor = Color.White;
+            installOutfits.Location = new Point(674, 6);
+            installOutfits.Margin = new Padding(6);
+            installOutfits.Name = "installOutfits";
+            installOutfits.ShadowDecoration.CustomizableEdges = customizableEdges37;
+            installOutfits.Size = new Size(155, 45);
+            installOutfits.TabIndex = 3;
+            installOutfits.Text = "Install Outfits";
+            installOutfits.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            // 
+            // installJsonVehicles
+            // 
+            installJsonVehicles.BorderRadius = 10;
+            installJsonVehicles.CustomizableEdges = customizableEdges38;
+            installJsonVehicles.DisabledState.BorderColor = Color.DarkGray;
+            installJsonVehicles.DisabledState.CustomBorderColor = Color.DarkGray;
+            installJsonVehicles.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            installJsonVehicles.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            installJsonVehicles.FillColor = Color.FromArgb(155, 0, 0);
+            installJsonVehicles.Font = new Font("Segoe UI", 9F);
+            installJsonVehicles.ForeColor = Color.White;
+            installJsonVehicles.Location = new Point(507, 6);
+            installJsonVehicles.Margin = new Padding(6);
+            installJsonVehicles.Name = "installJsonVehicles";
+            installJsonVehicles.ShadowDecoration.CustomizableEdges = customizableEdges39;
+            installJsonVehicles.Size = new Size(155, 45);
+            installJsonVehicles.TabIndex = 3;
+            installJsonVehicles.Text = "Install Json Vehicles";
+            installJsonVehicles.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            // 
             // installYimASI
             // 
             installYimASI.BorderRadius = 10;
-            installYimASI.CustomizableEdges = customizableEdges36;
+            installYimASI.CustomizableEdges = customizableEdges40;
             installYimASI.DisabledState.BorderColor = Color.DarkGray;
             installYimASI.DisabledState.CustomBorderColor = Color.DarkGray;
             installYimASI.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -289,7 +337,7 @@ namespace YimUpdater
             installYimASI.Location = new Point(340, 6);
             installYimASI.Margin = new Padding(6);
             installYimASI.Name = "installYimASI";
-            installYimASI.ShadowDecoration.CustomizableEdges = customizableEdges37;
+            installYimASI.ShadowDecoration.CustomizableEdges = customizableEdges41;
             installYimASI.Size = new Size(155, 45);
             installYimASI.TabIndex = 3;
             installYimASI.Text = "Install YimASI";
@@ -298,7 +346,7 @@ namespace YimUpdater
             // installXMLs
             // 
             installXMLs.BorderRadius = 10;
-            installXMLs.CustomizableEdges = customizableEdges38;
+            installXMLs.CustomizableEdges = customizableEdges42;
             installXMLs.DisabledState.BorderColor = Color.DarkGray;
             installXMLs.DisabledState.CustomBorderColor = Color.DarkGray;
             installXMLs.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -309,7 +357,7 @@ namespace YimUpdater
             installXMLs.Location = new Point(173, 6);
             installXMLs.Margin = new Padding(6);
             installXMLs.Name = "installXMLs";
-            installXMLs.ShadowDecoration.CustomizableEdges = customizableEdges39;
+            installXMLs.ShadowDecoration.CustomizableEdges = customizableEdges43;
             installXMLs.Size = new Size(155, 45);
             installXMLs.TabIndex = 2;
             installXMLs.Text = "Install XML's";
@@ -318,7 +366,7 @@ namespace YimUpdater
             // downloadAnimations
             // 
             downloadAnimations.BorderRadius = 10;
-            downloadAnimations.CustomizableEdges = customizableEdges40;
+            downloadAnimations.CustomizableEdges = customizableEdges44;
             downloadAnimations.DisabledState.BorderColor = Color.DarkGray;
             downloadAnimations.DisabledState.CustomBorderColor = Color.DarkGray;
             downloadAnimations.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -329,7 +377,7 @@ namespace YimUpdater
             downloadAnimations.Location = new Point(6, 6);
             downloadAnimations.Margin = new Padding(6);
             downloadAnimations.Name = "downloadAnimations";
-            downloadAnimations.ShadowDecoration.CustomizableEdges = customizableEdges41;
+            downloadAnimations.ShadowDecoration.CustomizableEdges = customizableEdges45;
             downloadAnimations.Size = new Size(155, 45);
             downloadAnimations.TabIndex = 1;
             downloadAnimations.Text = "Install Animations";
@@ -348,7 +396,7 @@ namespace YimUpdater
             // downloadHorseMenu
             // 
             downloadHorseMenu.BorderRadius = 10;
-            downloadHorseMenu.CustomizableEdges = customizableEdges42;
+            downloadHorseMenu.CustomizableEdges = customizableEdges46;
             downloadHorseMenu.DisabledState.BorderColor = Color.DarkGray;
             downloadHorseMenu.DisabledState.CustomBorderColor = Color.DarkGray;
             downloadHorseMenu.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -359,7 +407,7 @@ namespace YimUpdater
             downloadHorseMenu.Location = new Point(6, 6);
             downloadHorseMenu.Margin = new Padding(6);
             downloadHorseMenu.Name = "downloadHorseMenu";
-            downloadHorseMenu.ShadowDecoration.CustomizableEdges = customizableEdges43;
+            downloadHorseMenu.ShadowDecoration.CustomizableEdges = customizableEdges47;
             downloadHorseMenu.Size = new Size(155, 45);
             downloadHorseMenu.TabIndex = 4;
             downloadHorseMenu.Text = "Download HorseMenu";
@@ -382,7 +430,7 @@ namespace YimUpdater
             processName.BorderColor = Color.FromArgb(155, 0, 0);
             processName.BorderRadius = 10;
             processName.BorderThickness = 2;
-            processName.CustomizableEdges = customizableEdges44;
+            processName.CustomizableEdges = customizableEdges48;
             processName.DefaultText = "";
             processName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             processName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -398,14 +446,14 @@ namespace YimUpdater
             processName.PasswordChar = '\0';
             processName.PlaceholderText = "Enter a Process Name (Ex:  GTA5 or RDR2)";
             processName.SelectedText = "";
-            processName.ShadowDecoration.CustomizableEdges = customizableEdges45;
+            processName.ShadowDecoration.CustomizableEdges = customizableEdges49;
             processName.Size = new Size(322, 45);
             processName.TabIndex = 0;
             // 
             // injectDLL
             // 
             injectDLL.BorderRadius = 10;
-            injectDLL.CustomizableEdges = customizableEdges46;
+            injectDLL.CustomizableEdges = customizableEdges50;
             injectDLL.DisabledState.BorderColor = Color.DarkGray;
             injectDLL.DisabledState.CustomBorderColor = Color.DarkGray;
             injectDLL.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -416,7 +464,7 @@ namespace YimUpdater
             injectDLL.Location = new Point(509, 6);
             injectDLL.Margin = new Padding(6);
             injectDLL.Name = "injectDLL";
-            injectDLL.ShadowDecoration.CustomizableEdges = customizableEdges47;
+            injectDLL.ShadowDecoration.CustomizableEdges = customizableEdges51;
             injectDLL.Size = new Size(155, 45);
             injectDLL.TabIndex = 6;
             injectDLL.Text = "Select/Inject DLL";
@@ -425,7 +473,7 @@ namespace YimUpdater
             // launchGame
             // 
             launchGame.BorderRadius = 10;
-            launchGame.CustomizableEdges = customizableEdges48;
+            launchGame.CustomizableEdges = customizableEdges52;
             launchGame.DisabledState.BorderColor = Color.DarkGray;
             launchGame.DisabledState.CustomBorderColor = Color.DarkGray;
             launchGame.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -436,7 +484,7 @@ namespace YimUpdater
             launchGame.Location = new Point(340, 6);
             launchGame.Margin = new Padding(6);
             launchGame.Name = "launchGame";
-            launchGame.ShadowDecoration.CustomizableEdges = customizableEdges49;
+            launchGame.ShadowDecoration.CustomizableEdges = customizableEdges53;
             launchGame.Size = new Size(155, 45);
             launchGame.TabIndex = 5;
             launchGame.Text = "Launch Game";
@@ -455,7 +503,7 @@ namespace YimUpdater
             // updateCheck
             // 
             updateCheck.BorderRadius = 10;
-            updateCheck.CustomizableEdges = customizableEdges50;
+            updateCheck.CustomizableEdges = customizableEdges54;
             updateCheck.DisabledState.BorderColor = Color.DarkGray;
             updateCheck.DisabledState.CustomBorderColor = Color.DarkGray;
             updateCheck.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -466,7 +514,7 @@ namespace YimUpdater
             updateCheck.Location = new Point(6, 6);
             updateCheck.Margin = new Padding(6);
             updateCheck.Name = "updateCheck";
-            updateCheck.ShadowDecoration.CustomizableEdges = customizableEdges51;
+            updateCheck.ShadowDecoration.CustomizableEdges = customizableEdges55;
             updateCheck.Size = new Size(155, 45);
             updateCheck.TabIndex = 5;
             updateCheck.Text = "Check for Updates";
@@ -476,14 +524,14 @@ namespace YimUpdater
             // 
             progressBar1.AutoRoundedCorners = true;
             progressBar1.BorderRadius = 10;
-            progressBar1.CustomizableEdges = customizableEdges52;
+            progressBar1.CustomizableEdges = customizableEdges56;
             progressBar1.FillColor = Color.FromArgb(20, 20, 20);
             progressBar1.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             progressBar1.Location = new Point(408, 53);
             progressBar1.Name = "progressBar1";
             progressBar1.ProgressColor = Color.FromArgb(155, 0, 0);
             progressBar1.ProgressColor2 = Color.FromArgb(157, 74, 40);
-            progressBar1.ShadowDecoration.CustomizableEdges = customizableEdges53;
+            progressBar1.ShadowDecoration.CustomizableEdges = customizableEdges57;
             progressBar1.ShowText = true;
             progressBar1.Size = new Size(300, 22);
             progressBar1.TabIndex = 4;
@@ -502,7 +550,7 @@ namespace YimUpdater
             logoImage.Location = new Point(523, -1);
             logoImage.Name = "logoImage";
             logoImage.PressedState.ImageSize = new Size(64, 64);
-            logoImage.ShadowDecoration.CustomizableEdges = customizableEdges54;
+            logoImage.ShadowDecoration.CustomizableEdges = customizableEdges58;
             logoImage.Size = new Size(71, 53);
             logoImage.TabIndex = 5;
             // 
@@ -568,6 +616,8 @@ namespace YimUpdater
         private Guna.UI2.WinForms.Guna2HtmlLabel programTitle;
         private Guna.UI2.WinForms.Guna2Button howToGuide;
         private TabPage Addons_Tab;
+        private Guna.UI2.WinForms.Guna2Button installOutfits;
+        private Guna.UI2.WinForms.Guna2Button installJsonVehicles;
         private Guna.UI2.WinForms.Guna2Button installYimASI;
         private Guna.UI2.WinForms.Guna2Button installXMLs;
         private Guna.UI2.WinForms.Guna2Button downloadAnimations;

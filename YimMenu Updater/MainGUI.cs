@@ -49,6 +49,8 @@ namespace YimUpdater
             uninstallYimMenu.Click += uninstallYimMenu_Click;
             deleteCache.Click += deleteCache_Click;
             downloadYimMenu.Click += downloadYimMenu_Click;
+            installOutfits.Click += installOutfits_Click;
+            installJsonVehicles.Click += installJsonVehicles_Click;
             installYimASI.Click += installYimASI_Click;
             installXMLs.Click += installXMLs_Click;
             downloadAnimations.Click += downloadAnimations_Click;
@@ -464,6 +466,28 @@ namespace YimUpdater
             {
                 MessageBox.Show("Error restarting application as administrator: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void installOutfits_Click(object? sender, EventArgs e)
+        {
+            // For saved_outfits.zip
+            string urlOutfits = "https://raw.githubusercontent.com/juniorkrz/Yim-Json-Vehicles-and-Outfits/master/downloads/saved_outfits.zip";
+            string zipFileNameOutfits = "saved_outfits.zip";
+            string zipFileNameO = "Outfits";
+            string extractDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "YimMenu");
+
+            DownloadAndExtractZip(urlOutfits, zipFileNameOutfits, zipFileNameO, extractDirectory);
+        }
+
+        private void installJsonVehicles_Click(object? sender, EventArgs e)
+        {
+            // For saved_json_vehicles.zip
+            string urlJsonVehicles = "https://raw.githubusercontent.com/juniorkrz/Yim-Json-Vehicles-and-Outfits/master/downloads/saved_json_vehicles.zip";
+            string zipFileNameJsonVehicles = "saved_json_vehicles.zip";
+            string zipFileNameJV = "Json Vehicles";
+            string extractDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "YimMenu");
+
+            DownloadAndExtractZip(urlJsonVehicles, zipFileNameJsonVehicles, zipFileNameJV, extractDirectory);
         }
 
         private void installYimASI_Click(object? sender, EventArgs e)
