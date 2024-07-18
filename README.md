@@ -39,7 +39,7 @@ NOTE: YMU.exe wont detect djjinject.exe if they are not moved to your desktop an
 ### Tools
 - Process Name (GTA5, RDR2, Minecraft.Windows, etc.)
 - Launch Game -> Launches the chosen process
-- Select/Inject DLL 
+- Select/Inject DLL
 
 
 # How To Compile
@@ -51,5 +51,5 @@ Click 'Publish' and hit the Publish Button then click Open Folder when its finis
 
 You should have 2 .exe's -- YimMenu Updater & dllinject.exe
 
-IF you do not have the dllinject.exe, visit https://github.com/nefarius/Injector and download the release, 
+IF you do not have the dllinject.exe, visit https://github.com/nefarius/Injector and download the release,
 then rename it to dllinject.exe and put it in the same location as YimMenu Updater.exe

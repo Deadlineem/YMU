@@ -95,18 +95,18 @@ namespace YimUpdater
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             SuspendLayout();
-            // 
+            //
             // pictureBox1
-            // 
+            //
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(393, 44);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            // 
+            //
             // CloseBtn
-            // 
+            //
             CloseBtn.BackColor = Color.Transparent;
             CloseBtn.BackgroundImage = YimMenu_Updater.Properties.Resources.closeBtn;
             CloseBtn.BackgroundImageLayout = ImageLayout.Center;
@@ -120,9 +120,9 @@ namespace YimUpdater
             CloseBtn.Size = new Size(105, 35);
             CloseBtn.TabIndex = 2;
             CloseBtn.UseVisualStyleBackColor = false;
-            // 
+            //
             // minBtn
-            // 
+            //
             minBtn.BackColor = Color.Transparent;
             minBtn.BackgroundImage = YimMenu_Updater.Properties.Resources.minBtn;
             minBtn.BackgroundImageLayout = ImageLayout.Center;
@@ -135,9 +135,9 @@ namespace YimUpdater
             minBtn.Size = new Size(105, 35);
             minBtn.TabIndex = 3;
             minBtn.UseVisualStyleBackColor = false;
-            // 
+            //
             // guna2TabControl1
-            // 
+            //
             guna2TabControl1.Controls.Add(YimMenu_Tab);
             guna2TabControl1.Controls.Add(LuaScripts_Tab);
             guna2TabControl1.Controls.Add(Addons_Tab);
@@ -169,9 +169,9 @@ namespace YimUpdater
             guna2TabControl1.TabIndex = 4;
             guna2TabControl1.TabMenuBackColor = Color.FromArgb(30, 30, 30);
             guna2TabControl1.TabMenuOrientation = Guna.UI2.WinForms.TabMenuOrientation.HorizontalTop;
-            // 
+            //
             // YimMenu_Tab
-            // 
+            //
             YimMenu_Tab.BackColor = Color.FromArgb(30, 30, 30);
             YimMenu_Tab.Controls.Add(howToGuide);
             YimMenu_Tab.Controls.Add(uninstallYimMenu);
@@ -184,9 +184,9 @@ namespace YimUpdater
             YimMenu_Tab.Size = new Size(1036, 492);
             YimMenu_Tab.TabIndex = 0;
             YimMenu_Tab.Text = "YimMenu";
-            // 
+            //
             // howToGuide
-            // 
+            //
             howToGuide.BorderRadius = 10;
             howToGuide.CustomizableEdges = customizableEdges28;
             howToGuide.DisabledState.BorderColor = Color.DarkGray;
@@ -202,9 +202,9 @@ namespace YimUpdater
             howToGuide.Size = new Size(155, 45);
             howToGuide.TabIndex = 3;
             howToGuide.Text = "YimMenu How-To";
-            // 
+            //
             // uninstallYimMenu
-            // 
+            //
             uninstallYimMenu.BorderRadius = 10;
             uninstallYimMenu.CustomizableEdges = customizableEdges30;
             uninstallYimMenu.DisabledState.BorderColor = Color.DarkGray;
@@ -221,9 +221,9 @@ namespace YimUpdater
             uninstallYimMenu.Size = new Size(155, 45);
             uninstallYimMenu.TabIndex = 2;
             uninstallYimMenu.Text = "Uninstall YimMenu";
-            // 
+            //
             // deleteCache
-            // 
+            //
             deleteCache.BorderRadius = 10;
             deleteCache.CustomizableEdges = customizableEdges32;
             deleteCache.DisabledState.BorderColor = Color.DarkGray;
@@ -240,9 +240,9 @@ namespace YimUpdater
             deleteCache.Size = new Size(155, 45);
             deleteCache.TabIndex = 1;
             deleteCache.Text = "Delete Cache";
-            // 
+            //
             // downloadYimMenu
-            // 
+            //
             downloadYimMenu.BorderRadius = 10;
             downloadYimMenu.CustomizableEdges = customizableEdges34;
             downloadYimMenu.DisabledState.BorderColor = Color.DarkGray;
@@ -259,18 +259,18 @@ namespace YimUpdater
             downloadYimMenu.Size = new Size(155, 45);
             downloadYimMenu.TabIndex = 0;
             downloadYimMenu.Text = "Download YimMenu";
-            // 
+            //
             // LuaScripts_Tab
-            // 
+            //
             LuaScripts_Tab.BackColor = Color.FromArgb(30, 30, 30);
             LuaScripts_Tab.Location = new Point(4, 44);
             LuaScripts_Tab.Name = "LuaScripts_Tab";
             LuaScripts_Tab.Size = new Size(1036, 492);
             LuaScripts_Tab.TabIndex = 1;
             LuaScripts_Tab.Text = "Lua Scripts";
-            // 
+            //
             // Addons_Tab
-            // 
+            //
             Addons_Tab.BackColor = Color.FromArgb(30, 30, 30);
             Addons_Tab.Controls.Add(installOutfits);
             Addons_Tab.Controls.Add(installJsonVehicles);
@@ -282,9 +282,9 @@ namespace YimUpdater
             Addons_Tab.Size = new Size(1036, 492);
             Addons_Tab.TabIndex = 2;
             Addons_Tab.Text = "Addons";
-            // 
+            //
             // installOutfits
-            // 
+            //
             installOutfits.BorderRadius = 10;
             installOutfits.CustomizableEdges = customizableEdges36;
             installOutfits.DisabledState.BorderColor = Color.DarkGray;
@@ -302,9 +302,9 @@ namespace YimUpdater
             installOutfits.TabIndex = 3;
             installOutfits.Text = "Install Outfits";
             installOutfits.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            // 
+            //
             // installJsonVehicles
-            // 
+            //
             installJsonVehicles.BorderRadius = 10;
             installJsonVehicles.CustomizableEdges = customizableEdges38;
             installJsonVehicles.DisabledState.BorderColor = Color.DarkGray;
@@ -322,9 +322,9 @@ namespace YimUpdater
             installJsonVehicles.TabIndex = 3;
             installJsonVehicles.Text = "Install Json Vehicles";
             installJsonVehicles.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            // 
+            //
             // installYimASI
-            // 
+            //
             installYimASI.BorderRadius = 10;
             installYimASI.CustomizableEdges = customizableEdges40;
             installYimASI.DisabledState.BorderColor = Color.DarkGray;
@@ -342,9 +342,9 @@ namespace YimUpdater
             installYimASI.TabIndex = 3;
             installYimASI.Text = "Install YimASI";
             installYimASI.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            // 
+            //
             // installXMLs
-            // 
+            //
             installXMLs.BorderRadius = 10;
             installXMLs.CustomizableEdges = customizableEdges42;
             installXMLs.DisabledState.BorderColor = Color.DarkGray;
@@ -362,9 +362,9 @@ namespace YimUpdater
             installXMLs.TabIndex = 2;
             installXMLs.Text = "Install XML's";
             installXMLs.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            // 
+            //
             // downloadAnimations
-            // 
+            //
             downloadAnimations.BorderRadius = 10;
             downloadAnimations.CustomizableEdges = customizableEdges44;
             downloadAnimations.DisabledState.BorderColor = Color.DarkGray;
@@ -382,9 +382,9 @@ namespace YimUpdater
             downloadAnimations.TabIndex = 1;
             downloadAnimations.Text = "Install Animations";
             downloadAnimations.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            // 
+            //
             // HorseMenu_Tab
-            // 
+            //
             HorseMenu_Tab.BackColor = Color.FromArgb(30, 30, 30);
             HorseMenu_Tab.Controls.Add(downloadHorseMenu);
             HorseMenu_Tab.Location = new Point(4, 44);
@@ -392,9 +392,9 @@ namespace YimUpdater
             HorseMenu_Tab.Size = new Size(1036, 492);
             HorseMenu_Tab.TabIndex = 3;
             HorseMenu_Tab.Text = "HorseMenu";
-            // 
+            //
             // downloadHorseMenu
-            // 
+            //
             downloadHorseMenu.BorderRadius = 10;
             downloadHorseMenu.CustomizableEdges = customizableEdges46;
             downloadHorseMenu.DisabledState.BorderColor = Color.DarkGray;
@@ -412,9 +412,9 @@ namespace YimUpdater
             downloadHorseMenu.TabIndex = 4;
             downloadHorseMenu.Text = "Download HorseMenu";
             downloadHorseMenu.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            // 
+            //
             // tabPage1
-            // 
+            //
             tabPage1.BackColor = Color.FromArgb(30, 30, 30);
             tabPage1.Controls.Add(processName);
             tabPage1.Controls.Add(injectDLL);
@@ -424,9 +424,9 @@ namespace YimUpdater
             tabPage1.Size = new Size(1036, 492);
             tabPage1.TabIndex = 4;
             tabPage1.Text = "Tools";
-            // 
+            //
             // processName
-            // 
+            //
             processName.BorderColor = Color.FromArgb(155, 0, 0);
             processName.BorderRadius = 10;
             processName.BorderThickness = 2;
@@ -449,9 +449,9 @@ namespace YimUpdater
             processName.ShadowDecoration.CustomizableEdges = customizableEdges49;
             processName.Size = new Size(322, 45);
             processName.TabIndex = 0;
-            // 
+            //
             // injectDLL
-            // 
+            //
             injectDLL.BorderRadius = 10;
             injectDLL.CustomizableEdges = customizableEdges50;
             injectDLL.DisabledState.BorderColor = Color.DarkGray;
@@ -469,9 +469,9 @@ namespace YimUpdater
             injectDLL.TabIndex = 6;
             injectDLL.Text = "Select/Inject DLL";
             injectDLL.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            // 
+            //
             // launchGame
-            // 
+            //
             launchGame.BorderRadius = 10;
             launchGame.CustomizableEdges = customizableEdges52;
             launchGame.DisabledState.BorderColor = Color.DarkGray;
@@ -489,9 +489,9 @@ namespace YimUpdater
             launchGame.TabIndex = 5;
             launchGame.Text = "Launch Game";
             launchGame.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            // 
+            //
             // tabPage2
-            // 
+            //
             tabPage2.BackColor = Color.FromArgb(30, 30, 30);
             tabPage2.Controls.Add(updateCheck);
             tabPage2.Location = new Point(4, 44);
@@ -499,9 +499,9 @@ namespace YimUpdater
             tabPage2.Size = new Size(1036, 492);
             tabPage2.TabIndex = 5;
             tabPage2.Text = "Settings";
-            // 
+            //
             // updateCheck
-            // 
+            //
             updateCheck.BorderRadius = 10;
             updateCheck.CustomizableEdges = customizableEdges54;
             updateCheck.DisabledState.BorderColor = Color.DarkGray;
@@ -519,9 +519,9 @@ namespace YimUpdater
             updateCheck.TabIndex = 5;
             updateCheck.Text = "Check for Updates";
             updateCheck.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            // 
+            //
             // progressBar1
-            // 
+            //
             progressBar1.AutoRoundedCorners = true;
             progressBar1.BorderRadius = 10;
             progressBar1.CustomizableEdges = customizableEdges56;
@@ -538,9 +538,9 @@ namespace YimUpdater
             progressBar1.Text = "progressBar1";
             progressBar1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             progressBar1.Visible = false;
-            // 
+            //
             // logoImage
-            // 
+            //
             logoImage.BackColor = Color.Transparent;
             logoImage.CheckedState.ImageSize = new Size(64, 64);
             logoImage.HoverState.ImageSize = new Size(64, 64);
@@ -553,9 +553,9 @@ namespace YimUpdater
             logoImage.ShadowDecoration.CustomizableEdges = customizableEdges58;
             logoImage.Size = new Size(71, 53);
             logoImage.TabIndex = 5;
-            // 
+            //
             // programTitle
-            // 
+            //
             programTitle.BackColor = Color.FromArgb(155, 0, 0);
             programTitle.BackgroundImageLayout = ImageLayout.None;
             programTitle.Enabled = false;
@@ -566,9 +566,9 @@ namespace YimUpdater
             programTitle.Size = new Size(157, 27);
             programTitle.TabIndex = 6;
             programTitle.Text = "YimMenu Updater";
-            // 
+            //
             // MainGUI
-            // 
+            //
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);

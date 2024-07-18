@@ -766,10 +766,10 @@ namespace YimUpdater
 
             switch (game)
             {
-                
+
                 /*
                 Process To Start and Find games, maybe if its finds more than one
-                installation it will ask which one to start, i know for rdr2 and gta5 there is 
+                installation it will ask which one to start, i know for rdr2 and gta5 there is
                 atleast 3 installation locations, epic games, steam and rockstar launcher.
 
                 As far as im aware Minecraft Bedrock is only avaiable on the Microsoft Store.
