@@ -299,7 +299,7 @@ namespace YimUpdater
             installOutfits.Name = "installOutfits";
             installOutfits.ShadowDecoration.CustomizableEdges = customizableEdges37;
             installOutfits.Size = new Size(155, 45);
-            installOutfits.TabIndex = 3;
+            installOutfits.TabIndex = 5;
             installOutfits.Text = "Install Outfits";
             installOutfits.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             //
@@ -319,7 +319,7 @@ namespace YimUpdater
             installJsonVehicles.Name = "installJsonVehicles";
             installJsonVehicles.ShadowDecoration.CustomizableEdges = customizableEdges39;
             installJsonVehicles.Size = new Size(155, 45);
-            installJsonVehicles.TabIndex = 3;
+            installJsonVehicles.TabIndex = 4;
             installJsonVehicles.Text = "Install Json Vehicles";
             installJsonVehicles.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             //
