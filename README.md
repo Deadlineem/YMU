@@ -60,7 +60,7 @@ You should have 2 .exe's -- YimMenu Updater & dllinject.exe
 - A: ONLY if you plan to use the injector in Tools, if not, no.
 
 - Q: Can I install all of this stuff manually?
-- A: YES!  Everything can be downloaded from YimMenu's official repositories and installed manually if you choose to. 
+- A: YES!  Everything can be downloaded from YimMenu's official repositories and installed manually if you choose to.  You can view a detailed guide at [YimMenu Updater Guide - Discussions](https://github.com/Deadlineem/YMU/discussions/9)
 
 
 
