@@ -51,5 +51,18 @@ Click 'Publish' and hit the Publish Button then click Open Folder when its finis
 
 You should have 2 .exe's -- YimMenu Updater & dllinject.exe
 
+# FAQ
+
+- Q:  I am having trouble installing addons through YimMenu Updater.
+- A:  Make sure you have Administrator privileges on your account that is logged into windows.  It requires this to place files in %APPDATA%\YimMenu\scripts, IF you do not have admin, use the [Update.bat](https://github.com/Deadlineem/Extras-Addon-for-YimMenu/blob/main/update.bat)
+
+- Q: Do i have to download dllinject?
+- A: ONLY if you plan to use the injector in Tools, if not, no.
+
+- Q: Can I install all of this stuff manually?
+- A: YES!  Everything can be downloaded from YimMenu's official repositories and installed manually if you choose to. 
+
+
+
 IF you do not have the dllinject.exe, visit https://github.com/nefarius/Injector and download the release,
-then rename it to dllinject.exe and put it in the same location as YimMenu Updater.exe
+then rename it to dllinject.exe and put it in the same location as YMU.exe
